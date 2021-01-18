@@ -6,12 +6,13 @@ Vue.use(Vuex)
 let state = {
   goals: [
     {
-      name: '200 workout',
+      name: '100 отжиманий',
       viewType: 'physical',
       isCurrent: false,
+      description: 'Сделать 100 отжиманий за один подход',
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 25,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
@@ -22,7 +23,7 @@ let state = {
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 50,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
@@ -32,118 +33,64 @@ let state = {
       viewType: 'spiritual',
       isCurrent: false,
       startPosition: 0,
+      description: '',
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 75,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
     {
       name: 'someone book',
-      viewType: 'book',
+      viewType: 'material',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 100,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
     {
       name: 'someone book',
-      viewType: 'book',
+      viewType: 'mentality',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 125,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
     {
-      name: 'someone book',
-      viewType: 'book',
+      name: 'buy big ban',
+      viewType: 'material',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 150,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
     {
-      name: 'stay body',
-      viewType: 'habit',
+      name: 'posture',
+      viewType: 'spiritual',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 175,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
     {
-      name: 'stay body',
-      viewType: 'habit',
+      name: 'posture',
+      viewType: 'physical',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
-      currentProgress: 87,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'stay body',
-      viewType: 'habit',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 87,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'stay body',
-      viewType: 'habit',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 87,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'stay body',
-      viewType: 'habit',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 87,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'stay body',
-      viewType: 'habit',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 87,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'stay body',
-      viewType: 'habit',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 87,
+      currentProgress: 200,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }

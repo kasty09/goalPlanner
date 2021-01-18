@@ -5,7 +5,7 @@
     <div class="face face1">
       <div class="content">
         <div v-html="typeImage"></div>
-        <h3>Add Goal</h3>
+        <h3>Добавить цель</h3>
       </div>
     </div>
     <div class="face face2">

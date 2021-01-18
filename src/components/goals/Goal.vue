@@ -1,7 +1,7 @@
 <template>
   <div
     class="goal-card"
-    :class="{'is_open': isOpen}"
+    :class="{'goal-card_is-open': isOpen}"
     @click="toglgleView"
     >
     <div class="face face1">
@@ -11,23 +11,28 @@
       </div>
     </div>
     <div class="face face2">
-      <div class="content">
-        <p>
-          wq;eokqopwdk;ac;k; ;j;qowj;wke; ;k;kq;wkq;ek
-        </p>
-        <a href="#">Read More</a>
+      <div
+        class="content"
+      >
+        <options :goal="goal" :is-open="transitionIsOpen" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import {SvgController} from '../../img/SvgController'
+import Options from './options/Options.vue'
 import busEvents from '../../utils/busEvents'
+import gsap from 'gsap'
 export default {
+  components: {
+    Options
+  },
   data () {
     return {
       SvgController: null,
-      isOpen: false
+      isOpen: false,
+      transitionIsOpen: false
     }
   },
   props: {
@@ -40,9 +45,14 @@ export default {
   },
   methods: {
     toglgleView () {
-      let currentActive = this.$el.classList.contains('is_open')
+      let currentActive = this.$el.classList.contains('goal-card_is-open')
       busEvents.$emit('closeGoal')
       this.isOpen = currentActive ? false : !this.isOpen
+    },
+    transitionHandler (e) {
+      if (e.target.classList.contains('face2')) {
+        this.transitionIsOpen = e.target.closest('.goal-card').classList.contains('goal-card_is-open')
+      }
     }
   },
   created () {
@@ -50,6 +60,12 @@ export default {
       this.isOpen = false
     })
     this.SvgController = new SvgController(this.goal.viewType)
+  },
+  mounted () {
+    this.$el.addEventListener('transitionend', this.transitionHandler)
+  },
+  beforeDestroy () {
+    this.$el.removeEventListener('transitionend', this.transitionHandler)
   }
 }
 </script>
