@@ -6,17 +6,20 @@
 </template>
 <script>
 
-import Goal from './Goal'
-import AddNewGoal from '../goals/AddNewGoal.vue'
-import { mapState } from 'vuex'
-
-export default {
-  computed: {
-    ...mapState(['goals'])
-  },
-  components: {
-    AddNewGoal,
-    Goal
+  import Goal from './Goal'
+  import AddNewGoal from '../goals/add-new-goal/AddNewGoal'
+  import { mapState } from 'vuex'
+  import goalsApi from '../../requests/api.js'
+  export default {
+    computed: {
+      ...mapState(['goals'])
+    },
+    components: {
+      AddNewGoal,
+      Goal
+    },
+    mounted () {
+      goalsApi.getAll()
+    }
   }
-}
 </script>

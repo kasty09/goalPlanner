@@ -7,41 +7,40 @@
     <div class="face face1">
       <div class="content">
         <div v-html="typeImage"></div>
-        <h3>{{goal.name}}</h3>
+        <h3>{{goal.title}}</h3>
       </div>
     </div>
     <div class="face face2">
       <div
         class="content"
       >
-        <options :goal="goal" :is-open="transitionIsOpen" />
+        <options v-if="isOpen" :goal="goal" :is-open="transitionIsOpen" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import {SvgController} from '../../img/SvgController'
 import Options from './options/Options.vue'
 import busEvents from '../../utils/busEvents'
-import gsap from 'gsap'
+import { mapState } from 'vuex'
+
 export default {
   components: {
     Options
   },
   data () {
     return {
-      SvgController: null,
       isOpen: false,
-      transitionIsOpen: false
+      transitionIsOpen: false,
+      svgController: null,
+      typeImage: null
     }
   },
   props: {
     goal: Object
   },
   computed: {
-    typeImage() {
-      return this.SvgController.getImageHtml()
-    }
+    ...mapState(['SvgController'])
   },
   methods: {
     toglgleView () {
@@ -56,13 +55,14 @@ export default {
     }
   },
   created () {
-    busEvents.$on('closeGoal', () => {
-      this.isOpen = false
-    })
-    this.SvgController = new SvgController(this.goal.viewType)
+    busEvents.$on('closeGoal', () => this.isOpen = false)
+
   },
   mounted () {
+    this.svgController = new this.SvgController()
     this.$el.addEventListener('transitionend', this.transitionHandler)
+    this.svgController.initDomElement(`#${this.goal.viewType}Svg`)
+    this.typeImage = this.svgController.getImageHtml(this.goal.viewType)
   },
   beforeDestroy () {
     this.$el.removeEventListener('transitionend', this.transitionHandler)

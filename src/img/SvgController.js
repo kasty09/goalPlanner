@@ -1,11 +1,19 @@
 import { svgImages } from '../variables'
 
-export class SvgController {
-  constructor (type) {
-    this.type = type
-  }
+class SvgController {
 
-  getImageHtml () {
-    return svgImages.find(image => image.type === this.type).value
+
+  getImageHtml (type) {
+    return svgImages.find(image => image.type === type).value
+  }
+  initDomElement(id) {
+    this.$el = document.querySelector(id)
+  }
+  addStyles (styles) {
+    Object.keys(styles).forEach(property => {
+      this.$el.style[property] = styles[property]
+    })
   }
 }
+
+export {SvgController}

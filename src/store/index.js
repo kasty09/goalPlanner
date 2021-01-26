@@ -1,14 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {SvgController} from '../img/SvgController'
 
 Vue.use(Vuex)
 
+const tempNewGoalProperties = {
+  currentStep: 0,
+  viewType: '',
+  viewTypeColor: '',
+  isActive: false,
+  description: '',
+  startPosition: 0,
+  finalGoal: 0,
+  currentProgress: 0,
+  iscompleted: false
+}
+
 let state = {
+  SvgController,
+  tempNewGoal: { ...tempNewGoalProperties },
   goals: [
     {
-      name: '100 отжиманий',
+      title: '100 отжиманий',
       viewType: 'physical',
-      isCurrent: false,
+      viewTypeColor: 'greenyellow',
+      isActive: false,
+      iscompleted: false,
       description: 'Сделать 100 отжиманий за один подход',
       startPosition: 0,
       finalGoal: 200,
@@ -20,6 +37,7 @@ let state = {
     {
       name: 'someone book',
       viewType: 'mentality',
+      viewTypeColor: 'rgb(30, 179, 224)',
       isCurrent: false,
       startPosition: 0,
       finalGoal: 200,
@@ -31,6 +49,7 @@ let state = {
     {
       name: 'someone book',
       viewType: 'spiritual',
+      viewTypeColor: 'rgb(0, 243, 61)',
       isCurrent: false,
       startPosition: 0,
       description: '',
@@ -44,60 +63,27 @@ let state = {
       name: 'someone book',
       viewType: 'material',
       isCurrent: false,
+      viewTypeColor: 'gold',
       startPosition: 0,
+      description: '',
       finalGoal: 200,
-      currentProgress: 100,
+      currentProgress: 75,
       progressInProcents () {
         return parseInt(100/(this.finalGoal) * this.currentProgress)
       }
     },
-    {
-      name: 'someone book',
-      viewType: 'mentality',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 125,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'buy big ban',
-      viewType: 'material',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 150,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'posture',
-      viewType: 'spiritual',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 175,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    },
-    {
-      name: 'posture',
-      viewType: 'physical',
-      isCurrent: false,
-      startPosition: 0,
-      finalGoal: 200,
-      currentProgress: 200,
-      progressInProcents () {
-        return parseInt(100/(this.finalGoal) * this.currentProgress)
-      }
-    }
+
+
   ]
 }
 
+let mutations = {
+  'CLEAR_TEMP_NEW_GOAL' (state) {
+    state.tempNewGoal = { ...tempNewGoalProperties }
+  }
+}
+
 export default {
-  state
+  state,
+  mutations
 }
